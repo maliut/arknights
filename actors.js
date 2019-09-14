@@ -188,7 +188,7 @@ function initPanel(mode) {
     let panel = $("#m-actors-panel");
     for (let job in actors) {
         let row = $(`
-<tr>
+<tr class="m-actors-row">
     <th class="m-th" scope="row">
         <button class="btn" type="button" style="pointer-events:none;cursor:default">${job}</button>
     </th>
