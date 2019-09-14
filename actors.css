@@ -61,6 +61,11 @@
     display: none;
 }
 
+#m-info-tuxi.active {
+    color: #fff;
+    background-color: rgb(236,151,31);
+}
+
 #m-actors-panel td {
     padding: 4px;
 }

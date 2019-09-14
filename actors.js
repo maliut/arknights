@@ -144,11 +144,13 @@ function onTagClick(name, star) {
 function onDoSelect(name, star) {
     $(".m-toggle-current").first().next().append($(getSelectedTagHTML(name, star)));
     $(`#m-pol-${name}`).hide();
+    $("#m-actors-count").text($("#m-include-panel").children().length);
 }
 
 function onCancelSelect(name) {
     $(`#m-sel-${name}`).remove();
     $(`#m-pol-${name}`).removeClass("active").attr("aria-pressed", false).show();
+    $("#m-actors-count").text($("#m-include-panel").children().length);
 }
 
 function getCurrentSelectedActors() {

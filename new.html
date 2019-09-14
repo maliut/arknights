@@ -121,7 +121,7 @@
 
         <div class="panel panel-info" id="m-actors-panel-parent">
             <div class="panel-heading">
-                <h3 class="panel-title">干员列表</h3>
+                <h3 class="panel-title">干员列表<span style="font-size: 13px">&nbsp;&nbsp;|&nbsp;已选：<span id="m-actors-count">0</span></span></h3>
             </div>
         </div>
 
@@ -136,6 +136,7 @@
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <script src="actors.js"></script>
+    <script src="levels.js"></script>
     <script>
         initPanel(0);
 
@@ -200,10 +201,16 @@
         }
 
         function _doSaveObj() {
+            let level = $("#m-info-level").val().trim() + ($("#m-info-tuxi").attr("aria-pressed") === "true" ? "突袭" : "");
+            if (!_validateLevel(level)) {
+                alert("关卡名不正确，请检查拼写或联系管理员");
+                $("#m-btn-submit").toggleClass("m-btn-loading");
+                return;
+            }
             let work = new AV.Object("Homework");
             work.set('title', $("#m-info-title").val().trim());
             work.set('author', $("#m-info-author").val().trim());
-            work.set('level', $("#m-info-level").val().trim() + ($("#m-info-tuxi").attr("aria-pressed") === "true" ? "突袭" : ""));
+            work.set('level', level);
             work.set('aid', $("#m-info-aid").val().trim() + "_" + $("#m-info-page").val().trim());
             work.set('cid', $("#m-info-cid").val().trim());
             work.set('actors', getCurrentSelectedActors().include);
@@ -215,6 +222,15 @@
                 alert("保存失败，请联系管理员");
                 $("#m-btn-submit").toggleClass("m-btn-loading");
             });
+        }
+
+        function _validateLevel(level) {
+            for (let ch in levels) {
+                if (levels[ch].includes(level)) {
+                    return true;
+                }
+            }
+            return false;
         }
     </script>
 </body>
