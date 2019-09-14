@@ -1,0 +1,44 @@
+.m-th {
+    padding-left: 15px !important;
+    width: 1%
+}
+
+.m-tag-6x {
+    color: #fff;
+    background: linear-gradient(to right, rgb(226,135,54), rgb(241,193,37), rgb(164,178,68));
+
+}
+
+.m-tag-5x {
+    color: #fff;
+    background-color: rgb(205,183,123);
+}
+
+.m-tag-4x {
+    color: #000;
+    background-color: rgb(205,188,204);
+}
+
+.m-tag-3x {
+    color: #fff;
+    background-color: rgb(5,175,244);
+}
+
+.m-tag-2x {
+    color: #000;
+    background-color: rgb(223,230,71);
+}
+
+.m-tag-1x {
+    color: #fff;
+    background-color: #000;
+}
+
+.m-toggle-current>button {
+    pointer-events: none;
+    /* cursor: default; */
+    /* opacity: 0.6; */
+    color: #fff !important;
+    background-color: #337ab7 !important;
+    border-color: #2e6da4 !important;
+}
