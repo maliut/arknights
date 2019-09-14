@@ -126,7 +126,7 @@
         </div>
 
 
-        <button type="button" class="btn btn-primary" style="width:100%;margin-bottom:20px"
+        <button type="button" id="m-btn-submit" class="btn btn-primary" style="width:100%;margin-bottom:20px"
             onclick="submit()">提交作业</button>
     </div>
 
@@ -171,13 +171,20 @@
                 alert("你没有权限！");
                 return;
             }
+            
             let aid = $("#m-info-aid").val().trim();
             let page = $("#m-info-page").val().trim();
+            if (aid === "") {
+                alert("数据不完整！");
+                return;
+            }
+            $("#m-btn-submit").toggleClass("m-btn-loading");
             let query = new AV.Query("Homework");
             query.equalTo('aid', aid + "_" + page);
             query.find().then(function (works) {
                 if (works.length > 0) {
                     alert("似乎已经有相同的作业了！");
+                    $("#m-btn-submit").toggleClass("m-btn-loading");
                 } else {
                     _doSaveObj();
                 }
@@ -187,6 +194,7 @@
                 } else {
                     console.log(e.code);
                     alert("查询失败，请联系管理员");
+                    $("#m-btn-submit").toggleClass("m-btn-loading");
                 }
             });
         }
@@ -201,9 +209,11 @@
             work.set('actors', getCurrentSelectedActors().include);
             work.save().then(function (work1) {
                 alert("保存成功！");
+                $("#m-btn-submit").toggleClass("m-btn-loading");
             }, function (e) {
                 console.log(e.code);
                 alert("保存失败，请联系管理员");
+                $("#m-btn-submit").toggleClass("m-btn-loading");
             });
         }
     </script>
