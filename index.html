@@ -193,7 +193,7 @@
                     tbody.append(`
 <tr>
     <th scope="row">${i+1}</th>
-    <td><a>${item.get('title')}</a></td>
+    <td><a href="detail.html?a=${item.get('aid')}&c=${item.get('cid')}&t=${encodeURI(item.get('title'))}" target="_blank">${item.get('title')}</a></td>
     <td>${item.get('author')}</td>
 </tr>
                     `);
