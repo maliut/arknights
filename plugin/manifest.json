@@ -1,0 +1,18 @@
+{
+    "content_scripts": [{
+       "js": ["jquery-1.8.0.min.js", "uploader.js"],
+       "css": ["uploader.css"],
+       "matches": ["https://www.bilibili.com/video/av*"],
+       "run_at": "document_end"
+    }],
+    "description": ".",
+    "icons": {
+       "128": "logo.jpg",
+       "16": "logo.jpg",
+       "48": "logo.jpg"
+    },
+    "manifest_version": 2,
+    "name": "Arknights Work Uploader",
+    "permissions": [ "https://www.bilibili.com/*", "storage" ],
+    "version": "1.0.0" 
+ }

@@ -21,50 +21,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">明日方舟作业帮</a>
-            </div>
-        </div><!-- /.container-fluid -->
-    </nav>
 
     <div class="container-fluid">
-        <div class="panel panel-primary">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div style="padding:6px 0">
-                            打开 Bilibili 视频页面，在开发者工具中运行下列代码，并将运行结果粘贴到下方的文本框中。
-                            <span class="bg-warning">关卡推测可能不准确，如有错误，请手动修复！！！</span>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-default pull-right" type="button" onclick="copyCode()">复制代码</button>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body">
-                <pre id="m-bilibili-code"
-                    style="white-space:normal">
-                    ;eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('5 4=$(".h")[0].9;5 6=(/b=(\\d+)&c=(\\d+)&e=(\\d+)/).f($("#i").j());5 7=($(".k-l>.m>a")[0]||{}).4||"";5 8=7+4;n.o({4:4+" "+7,p:$(".q")[0].9,b:6[1],c:6[2],e:r(6[3]),s:(((/\\g+(-\\g+)+/).f(8)||{})[0]||"").t(),u:8.v("突袭")>=0});',32,32,'||||title|let|ids|pname|indicate|innerText||aid|cid||page|exec|w|tit|link2|val|list|box|on|JSON|stringify|author|username|parseInt|level|toUpperCase|tuxi|indexOf'.split('|'),0,{}));            </div>
-        </div>
-
-        <div class="input-group">
-            <input type="text" id="m-info-input" class="form-control" placeholder="粘贴结果到此处">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" onclick="parseVideoInfo()">开始分析</button>
-            </span>
-        </div><!-- /input-group -->
-
         <div class="panel panel-info" style="margin-top:20px">
             <div class="panel-heading">
                 <h3 class="panel-title">基本信息</h3>
@@ -118,7 +76,14 @@
             </div>
         </div>
 
-        <div class="panel panel-info" id="m-actors-panel-parent">
+        <div class="input-group">
+                <input type="text" id="m-info-input" class="form-control" placeholder="粘贴干员OCR数据到此处">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" onclick="parseActorsInfo()">开始分析</button>
+                </span>
+            </div><!-- /input-group -->
+
+        <div class="panel panel-info" id="m-actors-panel-parent" style="margin-top:20px">
             <div class="panel-heading">
                 <h3 class="panel-title">干员列表<span style="font-size: 13px">&nbsp;&nbsp;|&nbsp;已选：<span id="m-actors-count">0</span></span></h3>
             </div>
@@ -139,10 +104,11 @@
     <script>
         initPanel(0);
 
-        function parseVideoInfo() {
-            let input = $("#m-info-input");
-            let raw = input.val().trim();
-            if (raw[0] === '"') raw = raw.substring(1, raw.length - 1);
+        // parse video info
+        (function() {
+            let hash = location.hash;
+            if (hash === "") return;
+            let raw = decodeURI(hash.substr(1));
             try {
                 let info = JSON.parse(raw);
                 $("#m-info-title").val(info.title);
@@ -152,18 +118,20 @@
                 $("#m-info-aid").val(info.aid);
                 $("#m-info-cid").val(info.cid);
                 $("#m-info-page").val(info.page);
-                input.css("border-color", "#cccccc");
             } catch (err) {
-                input.css("border-color", "#d43f3a");
+                
             }
-        }
+        })();
 
-        function copyCode() {
-            let tmpi = $("<input />").val($("#m-bilibili-code").text());//.hide();
-            $("body").append(tmpi);
-            tmpi.select();
-            document.execCommand("Copy");
-            tmpi.remove();
+        function parseActorsInfo() {
+            let input = $("#m-info-input");
+            let values = input.val().trim().split(/\s+/);
+            for (let i = 0; i < values.length; i++) {
+                let name = _correct(values[i]);
+                let tag = $(`#m-pol-${name}`);
+                if (tag.length === 0 || tag.css("display") === "none") continue;
+                tag.click();
+            }
         }
 
         function submit() {
@@ -230,6 +198,17 @@
                 }
             }
             return false;
+        }
+
+        function _correct(name) {
+            return _correctMap[name] || name;
+        }
+
+        const _correctMap = {
+            "白面鹗": "白面鸮",
+            "喜维尔": "嘉维尔",
+            "未药": "末药",
+            "改兰莎": "玫兰莎",
         }
     </script>
 </body>

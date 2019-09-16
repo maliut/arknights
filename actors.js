@@ -103,7 +103,6 @@ const actors = {
         { name: "梅尔", star: 5 },
         { name: "空", star: 5 },
         { name: "真理", star: 5 },
-        { name: "空", star: 5 },
         { name: "深海色", star: 4 },
         { name: "地灵", star: 4 },
         { name: "梓兰", star: 3 },
