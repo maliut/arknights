@@ -85,7 +85,10 @@
 
         <div class="panel panel-info" id="m-actors-panel-parent" style="margin-top:20px">
             <div class="panel-heading">
-                <h3 class="panel-title">干员列表<span style="font-size: 13px">&nbsp;&nbsp;|&nbsp;已选：<span id="m-actors-count">0</span></span></h3>
+                <h3 class="panel-title">干员列表
+                    <span style="font-size: 13px">&nbsp;&nbsp;|&nbsp;已选：<span id="m-actors-count">0</span></span>
+                    <span id="m-actors-panel-folder" class="m-display-none">展开</span>
+                </h3>
             </div>
         </div>
 
@@ -123,12 +126,23 @@
             }
         })();
 
+        $("#m-actors-panel-folder").click(() => {
+            $(".m-actors-row").toggleClass("m-display-none");
+            let text = $("#m-actors-panel-folder").text();
+            $("#m-actors-panel-folder").text(text === "收起" ? "展开" : "收起");
+        });
+
         function parseActorsInfo() {
             let input = $("#m-info-input");
             let values = input.val().trim().split(/\s+/);
             for (let i = 0; i < values.length; i++) {
                 let name = _correct(values[i]);
-                let tag = $(`#m-pol-${name}`);
+                let tag;
+                try {
+                    tag = $(`#m-pol-${name}`);  // 可能提取出来有特殊字符导致报错
+                } catch (err) {
+                    tag = { length: 0 };
+                }
                 if (tag.length === 0 || tag.css("display") === "none") continue;
                 tag.click();
             }
@@ -209,6 +223,8 @@
             "喜维尔": "嘉维尔",
             "未药": "末药",
             "改兰莎": "玫兰莎",
+            "林默": "赫默",
+            "网米短": "阿米娅"
         }
     </script>
 </body>

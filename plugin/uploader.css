@@ -1,7 +1,7 @@
 #m-plugin-panel {
     position: fixed;
     width: 33%;
-    height: 100%;
+    height: calc(100% - 280px);
     z-index: 100;
     background: lightgray;
     top: 280px;
