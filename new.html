@@ -87,7 +87,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">干员列表
                     <span style="font-size: 13px">&nbsp;&nbsp;|&nbsp;已选：<span id="m-actors-count">0</span></span>
-                    <span id="m-actors-panel-folder" class="m-display-none">展开</span>
+                    <span id="m-actors-panel-folder">展开</span>
                 </h3>
             </div>
         </div>
@@ -126,6 +126,7 @@
             }
         })();
 
+        $(".m-actors-row").toggleClass("m-display-none");
         $("#m-actors-panel-folder").click(() => {
             $(".m-actors-row").toggleClass("m-display-none");
             let text = $("#m-actors-panel-folder").text();
