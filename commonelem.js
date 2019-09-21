@@ -21,6 +21,7 @@ const common = {
         &copy;&nbsp;2019&nbsp;
         <a href="https://github.com/maliut" target="_blank">@maliut</a>&nbsp;
         <a href="https://github.com/FinZhang" target="_blank">@fin</a>&nbsp;|&nbsp;
+        <a href="https://github.com/Xraigor" target="_blank">@Xraigor</a>&nbsp;|&nbsp;
         <a href="https://github.com/maliut/arknights" target="_blank"><i class="icon-github"></i><a>&nbsp;
         <a href="https://weibo.com/maliut" target="_blank"><i class="icon-sina-weibo"></i><a>&nbsp;
         <a tabindex="0" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-html="true"
