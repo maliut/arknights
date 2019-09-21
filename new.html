@@ -112,18 +112,32 @@
             let hash = location.hash;
             if (hash === "") return;
             let raw = decodeURI(hash.substr(1));
+            let info;
             try {
-                let info = JSON.parse(raw);
-                $("#m-info-title").val(info.title);
-                $("#m-info-level").val(info.level);
-                if (info.tuxi) $("#m-info-tuxi").click();
-                $("#m-info-author").val(info.author);
-                $("#m-info-aid").val(info.aid);
-                $("#m-info-cid").val(info.cid);
-                $("#m-info-page").val(info.page);
+                info = JSON.parse(raw);
             } catch (err) {
-                
+                console.log("parse data failed");
+                return;
             }
+
+            $("#m-info-title").val(info.title);
+            $("#m-info-level").val(info.level);
+            if (info.tuxi) $("#m-info-tuxi").click();
+            $("#m-info-author").val(info.author);
+            $("#m-info-aid").val(info.aid);
+            $("#m-info-cid").val(info.cid);
+            $("#m-info-page").val(info.page);
+
+            // check duplicate
+            let query = new AV.Query("Homework");
+            query.equalTo('aid', info.aid + "_" + info.page);
+            query.find().then(function (works) {
+                if (works.length > 0) {
+                    alert("似乎已经有相同的作业了！");
+                }
+            }, function (e) {
+                alert("查询重复作业失败，错误码：" + e.code);
+            });
         })();
 
         $(".m-actors-row").toggleClass("m-display-none");
@@ -162,24 +176,25 @@
                 return;
             }
             $("#m-btn-submit").toggleClass("m-btn-loading");
-            let query = new AV.Query("Homework");
-            query.equalTo('aid', aid + "_" + page);
-            query.find().then(function (works) {
-                if (works.length > 0) {
-                    alert("似乎已经有相同的作业了！");
-                    $("#m-btn-submit").toggleClass("m-btn-loading");
-                } else {
-                    _doSaveObj();
-                }
-            }, function (e) {
-                if (e.code === 101) {
-                    _doSaveObj();
-                } else {
-                    console.log(e.code);
-                    alert("查询失败，请联系管理员");
-                    $("#m-btn-submit").toggleClass("m-btn-loading");
-                }
-            });
+            // let query = new AV.Query("Homework");
+            // query.equalTo('aid', aid + "_" + page);
+            // query.find().then(function (works) {
+            //     if (works.length > 0) {
+            //         alert("似乎已经有相同的作业了！");
+            //         $("#m-btn-submit").toggleClass("m-btn-loading");
+            //     } else {
+            //         _doSaveObj();
+            //     }
+            // }, function (e) {
+            //     if (e.code === 101) {
+            //         _doSaveObj();
+            //     } else {
+            //         console.log(e.code);
+            //         alert("查询失败，请联系管理员");
+            //         $("#m-btn-submit").toggleClass("m-btn-loading");
+            //     }
+            // });
+            _doSaveObj();
         }
 
         function _doSaveObj() {
@@ -200,8 +215,7 @@
                 alert("保存成功！");
                 $("#m-btn-submit").toggleClass("m-btn-loading");
             }, function (e) {
-                console.log(e.code);
-                alert("保存失败，请联系管理员");
+                alert("保存失败，错误码：" + e.code);
                 $("#m-btn-submit").toggleClass("m-btn-loading");
             });
         }
@@ -227,7 +241,8 @@
             "林默": "赫默",
             "网米短": "阿米娅",
             "米格舍": "米格鲁",
-            "米格售": "米格鲁"
+            "米格售": "米格鲁",
+            "调香师I": "调香师"
         }
     </script>
 </body>
