@@ -17,7 +17,7 @@
                 aid: ids[1],
                 cid: ids[2],
                 page: ids[3],
-                level: (((/\w+(-\w+)+/).exec(indicate) || {})[0] || "").toUpperCase(),
+                level: _indicate(indicate),
                 tuxi: indicate.indexOf("突袭") >= 0
             });
         
@@ -29,5 +29,15 @@
         }
     ), 3000);
 
+    function _indicate(name) {
+        if (name.indexOf("切尔诺伯格") >= 0) {
+            return "切尔诺伯格";
+        } else if (name.indexOf("龙门外环") >= 0) {
+            return "龙门外环";
+        } else if (name.indexOf("龙门市区") >= 0) {
+            return "龙门市区";
+        }
+        return (((/\w+(-\w+)+/).exec(indicate) || {})[0] || "").toUpperCase();
+    }
 
 // );//.call(this);
