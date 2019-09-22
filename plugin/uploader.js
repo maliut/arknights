@@ -37,7 +37,7 @@
         } else if (name.indexOf("龙门市区") >= 0) {
             return "龙门市区";
         }
-        return (((/\w+(-\w+)+/).exec(indicate) || {})[0] || "").toUpperCase();
+        return (((/\w+(-\w+)+/).exec(name) || {})[0] || "").toUpperCase();
     }
 
 // );//.call(this);
