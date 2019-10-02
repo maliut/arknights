@@ -76,6 +76,7 @@ const actors = {
         { name: "古米", star: 4 },
         { name: "角峰", star: 4 },
         { name: "蛇屠箱", star: 4 },
+        { name: "坚雷", star: 4 },
         { name: "米格鲁", star: 3 },
         { name: "卡缇", star: 3 },
         { name: "斑点", star: 3 },
