@@ -48,5 +48,9 @@ const levels = {
         "OF-1", "OF-2", "OF-3", "OF-4", "OF-5", "OF-6", "OF-7", "OF-8", "OF-F1", "OF-F2", "OF-F3", "OF-F4",
         "OF-EX-1", "OF-EX-1突袭", "OF-EX-2", "OF-EX-2突袭", "OF-EX-3", "OF-EX-3突袭",
         "OF-EX-4", "OF-EX-4突袭", "OF-EX-5", "OF-EX-5突袭", "OF-EX-6", "OF-EX-6突袭",
+    ],
+    "战地秘闻": [
+        "SW-EV-1", "SW-EV-1突袭", "SW-EV-2", "SW-EV-2突袭", "SW-EV-3", "SW-EV-3突袭", "SW-EV-4", "SW-EV-4突袭", 
+        "SW-EV-5", "SW-EV-5突袭",
     ]
 }
