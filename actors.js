@@ -92,6 +92,7 @@ const actors = {
         { name: "锡兰", star: 5 },
         { name: "华法琳", star: 5 },
         { name: "赫默", star: 5 },
+        { name: "微风", star: 5 },
         { name: "苏苏洛", star: 4 },
         { name: "末药", star: 4 },
         { name: "嘉维尔", star: 4 },
@@ -120,6 +121,7 @@ const actors = {
         { name: "砾", star: 4 },
         { name: "暗索", star: 4 },
         { name: "阿消", star: 4 },
+        { name: "伊桑", star: 4 },
     ]
 };
 
